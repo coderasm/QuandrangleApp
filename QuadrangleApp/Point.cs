@@ -12,7 +12,7 @@ namespace QuadrangleApp
       this.y = y;
     }
 
-    public Point create(double x, double y)
+    public static Point create(double x, double y)
     {
       return new Point(x, y);
     }
@@ -29,9 +29,31 @@ namespace QuadrangleApp
       distance = Math.Sqrt((x - p.x) * (x - p.x) + (y - p.y) * (y - p.y));
       return distance;
     }
-    public void print()
+
+    public Point sub(Point p)
     {
-      Console.Write("Point: ({0}, {1})", x, y);
+      return create(x - p.x, y - p.y);
+    }
+
+    public Point norm()
+    {
+      var mag = this.mag();
+      return create(x / mag, y / mag);
+    }
+
+    public double dot(Point p)
+    {
+      return x * p.x + y * p.y;
+    }
+
+    public double mag()
+    {
+      return dist(create(0, 0));
+    }
+
+    public string print()
+    {
+      return $"({x}, {y})";
     }
   }
 }
